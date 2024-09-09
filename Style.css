@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --black: black;
+    --purple: purple;
+    --light-color: #666;
+    --box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    text-transform: none;
+    transition: all .2s linear;
+}
+
+html {
+    font-size: 80%;
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(120deg, #f0f4fd, #d9e4f5);
+}
+
+.header {
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    background: #fff;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo img {
+    margin-top: -20px;
+    height: 95px;
+    width: 100px;
+    display: inline-block;
+}
+
+.header .headbar button {
+    font-size: 1.75rem;
+    border-radius: 1.5rem;
+    padding: 1.5rem 4.5rem;
+    color: var(--light-color);
+    background: none;
+    border: 2px solid var(--light-color);
+}
+
+.header .headbar button:hover {
+    color: #fff;
+    background: linear-gradient(120deg, #c3b2ff 100%, #663399);
+    box-shadow: 0 .8rem 2rem rgba(0,0,0,.2);
+    transform: translateY(-2px);
+}
+
+.header .scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #649bff;
+    color: #fff;
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    display: none;
+}
+
+.header .scroll-to-top:hover {
+    background-color: #0070fa;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5% 10%;
+}
+
+.main .left {
+    padding-left: 50px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.main .left h2 {
+    padding-top: 10%;
+    font-size: 40px;
+    text-transform: capitalize;
+    margin-top: 50px;
+    font-style: italic;
+    color: var(--purple);
+}
+
+.main .left h1 {
+    font-size: 55px;
+    text-transform: capitalize;
+    font-weight: 700;
+    margin: 15px 0;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.main .left p {
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: var(--light-color);
+}
+
+.main .left button {
+    padding: 15px 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid;
+    box-shadow: var(--box-shadow);
+    background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
+    border-radius: 10px;
+}
+
+.main .left button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 .8rem 2rem rgba(0,0,0,.2);
+    background-image: linear-gradient(to right, #0070fa, #649bff, #0070fa);
+}
+
+.main .right {
+    width: 50%;
+    background-image: url('Obesity.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: inline-block;
+}
+
+.main .right img {
+    display: none; 
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main .left h1,
+.main .left h2 {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        padding: 5% 2%;
+    }
+
+    .main .right,
+    .main .left {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .header .logo img {
+        height: 75px;
+        width: 80px;
+    }
+
+    .main .left h1 {
+        font-size: 40px;
+    }
+
+    .main .left h2 {
+        font-size: 30px;
+    }
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+        :root {
+            --black: black;
+            --purple: purple;
+            --light-color: #666;
+            --box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+        }
+
+        * {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            text-decoration: none;
+            text-transform: none;
+            transition: all .2s linear;
+        }
+
+        html {
+            font-size: 80%;
+            overflow-x: hidden;
+            scroll-padding-top: 7rem;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #77fab2;
+        }
+
+        .header {
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 9%;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header .logo img {
+            margin-top: -20px;
+            height: 95px;
+            width: 100px;
+            display: inline-block;
+        }
+
+        
+        .header .headbar a {
+            font-size: 1.75rem;
+            border-radius: 1.5rem;
+            padding: 1rem 2rem; 
+            color: var(--light-color);
+            background: none;
+            border: 2px solid var(--light-color);
+            text-align: center;
+            display: inline-block;
+        }
+
+        .header .headbar a:hover {
+            color: #fff;
+            background: linear-gradient(120deg,#FAB2ff 100%,#663399);
+            border-color: transparent;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 120px auto 50px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3e7;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .bmi-category {
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="Doctor.jpg" alt="Doctor Logo">
+        </a>
+
+        <nav class="headbar">
+            <a href="index.html">Home</a>
+            <a href="HealthInfoPage.html">Health Info</a>
+            <a href="BMI.html">BMI Calculator</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>BMI Calculator</h1>
+
+        <section>
+            <h2>What is BMI?</h2>
+            <p>BMI, or Body Mass Index, is a simple calculation that helps you understand whether you have a healthy body weight in relation to your height. While it’s not a perfect measure of health, it’s a useful indicator for most people.</p>
+        </section>
+
+        <!-- Calculator Form -->
+        <section>
+            <h2>Calculate Your BMI</h2>
+            <div class="form-group">
+                <label for="height">Height (in centimeters):</label>
+                <input type="number" id="height" placeholder="Enter your height" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight (in kilograms):</label>
+                <input type="number" id="weight" placeholder="Enter your weight" required>
+            </div>
+            <button onclick="calculateBMI()">Calculate BMI</button>
+
+            <div class="result" id="bmiResult"></div>
+        </section>
+
+        <!-- BMI Categories -->
+        <section class="bmi-category">
+            <h2>BMI Categories</h2>
+            <ul>
+                <li><strong>Underweight:</strong> BMI less than 18.5</li>
+                <li><strong>Normal weight:</strong> BMI between 18.5 and 24.9</li>
+                <li><strong>Overweight:</strong> BMI between 25 and 29.9</li>
+                <li><strong>Obese:</strong> BMI 30 and above</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 BMI Calculator | All rights reserved</p>
+    </footer>
+
+    <!-- JavaScript for BMI Calculation -->
+    <script>
+        function calculateBMI() {
+            // Get height and weight values
+            var height = parseFloat(document.getElementById('height').value);
+            var weight = parseFloat(document.getElementById('weight').value);
+
+            // Calculate BMI
+            if (height > 0 && weight > 0) {
+                var bmi = weight / ((height / 100) * (height / 100));
+                bmi = bmi.toFixed(2); // Round to 2 decimal places
+
+                // Display result
+                var result = "Your BMI is " + bmi + ". ";
+
+                // Categorize the result
+                if (bmi < 18.5) {
+                    result += "You are underweight.";
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    result += "You are in the normal weight range.";
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    result += "You are overweight.";
+                } else {
+                    result += "You are in the obese category.";
+                }
+
+                document.getElementById('bmiResult').innerHTML = result;
+            } else {
+                document.getElementById('bmiResult').innerHTML = "Please enter valid height and weight.";
+            }
+        }
+    </script>
+</body>
+</html>
